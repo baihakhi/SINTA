@@ -1,5 +1,5 @@
 <?php
-  include('fn.php');
+  include('includes/fn.php');
 
  ?>
 
@@ -24,22 +24,6 @@
          </tr>
          <?php
             $query = getAllRow('log');
-            /*while($log=mysqli_fetch_array($query)){
-              $status = $log['persetujuan'];
-
-              if ($status == 1) {
-                return "terverifikasi";
-              }else {
-                return "belum terverifikasi";
-              }
-
-              echo "<tr>";
-              echo "  <td>".$log['tag']."</td>";
-              echo "  <td>".$log['tanggal']."</td>";
-              echo "  <td>".$status."</td>";
-              echo "  </tr>";
-            }
-              */
               while ($log = $query->fetch_object()) {
                 $progress = $log->tag;
                 $tanggal = $log->tanggal;
@@ -53,8 +37,7 @@
                   $status = "belum terverifikasi";
                 }
           ?>
-
-          <tra>
+          <tr>
             <td><a  href=info_log.php?q=<?= $tanggal ?> > <?= $progress ?> </a></td>
             <td><?= date_format($da,"d F Y"); ?></td>
             <td><?= $status ?></td>
@@ -67,7 +50,6 @@
           </tr>
           <?php } ?>
        </table>
-       <p id="cek"></p>
      </div>
    </body>
  </html>

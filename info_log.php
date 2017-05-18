@@ -1,5 +1,5 @@
 <?php
-include_once('fn.php');
+include_once('includes/fn.php');
 
   //algoritma
   if (isset($_GET['q'])){

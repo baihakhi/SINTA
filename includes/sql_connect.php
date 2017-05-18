@@ -3,7 +3,7 @@
 define ("HOST","localhost");
 define ("USER","root");
 define ("PASS","");
-define ("DATABASE","sinta");
+define ("DATABASE","db_sinta");
 define ("BASE","/SINTA");
 
 $con = new mysqli(HOST,USER,PASS,DATABASE);

@@ -1,5 +1,5 @@
 <?php
-include('fn.php');
+include('includes/fn.php');
 //algoritma
 if (isset($_GET['q'])){
   $q = readInput($_GET['q']);
