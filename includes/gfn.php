@@ -37,4 +37,9 @@ function getSpesificRow($table,$idKolom,$id){
   return runQuery($row);
 }
 
+function getSpesificRow2($table,$idKolom1,$id1,$idKolom2,$id2){
+  global $con;
+  $row = $con->query("SELECT * FROM ".$table." WHERE ".$idKolom1." = '".$id1."' AND ".$idKolom2." = '".$id2."' ");
+  return runQuery($row);
+}
  ?>
