@@ -6,7 +6,7 @@ include('../includes/fn.php');
 ?>
 <html>
 		<head>
-		<?php include 'bootstrap.html'; ?>
+		<?php include '../bootstrap.html'; ?>
 		</head>
 		<body>
 		<br/>

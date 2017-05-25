@@ -1,10 +1,10 @@
 <?php
-include_once('../includes/fn.php');
+include_once('includes/fn.php');
 
   //algoritma
-  if (isset($_GET['id'])){
-    $id = readInput($_GET['id']);
-    $query = getSpesificRow('log', 'id_log', $id);
+  if (isset($_GET['q'])){
+    $q = readInput($_GET['q']);
+    $query = getSpesificRow('log', 'tanggal', $q);
     while ($log = $query->fetch_object()) {
       $nim = $log->nim;
       $progress = $log->tag;
@@ -18,7 +18,7 @@ include_once('../includes/fn.php');
   }
 
   if(isset($_POST['verif'])){
-    if(verifikasi($id)){
+    if(verifikasi($nim, $tanggal)){
     echo "status catatan mahasiswa ".$nim." diperbarui";
   }
   }
@@ -56,11 +56,9 @@ include_once('../includes/fn.php');
        <div>
          <?= $catatan ?>
        </div>
-<!--
        <div>
          <button type="submit" name="verif">setujui</button>
        </div>
--->
      </form>
    </body>
  </html>

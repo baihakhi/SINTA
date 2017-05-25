@@ -1,9 +1,17 @@
 <?php
-include('includes/fn.php');
+include('../includes/fn.php');
 //algoritma
-if (isset($_GET['q'])){
-  $q = readInput($_GET['q']);
-  $query = getSpesificRow('log', 'tanggal', $q);
+if (!isset($_SESSION['username'])){
+  header("location:../logout.php");
+//    echo "session unset";
+}elseif ($_SESSION['akses']!='Mahasiswa') {
+//      echo $_SESSION['akses'];
+    header("location:../logout.php");
+}
+
+if (isset($_GET['id'])){
+  $id = readInput($_GET['id']);
+  $query = getSpesificRow('log', 'id_log', $id);
   while ($log = $query->fetch_object()) {
     $nim = $log->nim;
     $progress = $log->tag;
@@ -13,7 +21,7 @@ if (isset($_GET['q'])){
   }
 }
 else {
-  header('Location:/#');
+  header('Location:index.php');
 }
 
 if (isset($_POST["ubah"])) {
@@ -26,9 +34,10 @@ if (isset($_POST["ubah"])) {
   array_push($arr,!empty($_POST['progress']) ? readInput($_POST['progress']) : '');
   array_push($arr,!empty($_POST['catatan']) ? readInput($_POST['catatan']) : '');
 
-//  print_r($arr);
-  if(updateLog($arr,$tanggal) == true){
-    echo "updated";
+  print_r($arr);
+  if(updateLog($arr,$id) == true){
+//    echo "updated";
+    header("Location:info_log.php?id=".$id."");
   }else {
     echo "failed";
   }
@@ -39,6 +48,7 @@ if (isset($_POST["ubah"])) {
  <html>
    <head>
      <meta charset="utf-8">
+
      <title>Edit Catatan Mahasiswa
      </title>
    </head>

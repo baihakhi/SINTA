@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-include('../includes/fn.php');
+include('includes/fn.php');
 
 	$error_nim = '';
 	$error_nip = '';
@@ -29,8 +29,9 @@ if (isset($_POST["submit"])){
 			$result = getSpesificRow2('dosen', 'nip', $username, 'password', $password);
 			$row = $result->fetch_object();
 			if (($result->num_rows) == 1){
-				$_SESSION['nip']=$username;
-				header("location: dosen.php");
+				$_SESSION['username']=$username;
+				$_SESSION['akses']=$level;
+				header("location: dosen/index.php");
 			}else{
 				?>
 				<script language="JavaScript">
@@ -44,8 +45,9 @@ if (isset($_POST["submit"])){
 			$result = getSpesificRow2('mahasiswa', 'nim', $username, 'password', $password);
 			$row = $result->fetch_object();
 			if (($result->num_rows) == 1){
-				$_SESSION['nim']=$username;
-				header("location: mahasiswa.php");
+				$_SESSION['username']=$username;
+				$_SESSION['akses']=$level;
+				header("location: mahasiswa/index.php");
 			}else{
 				?>
 				<script language="JavaScript">
@@ -61,7 +63,8 @@ if (isset($_POST["submit"])){
 				$row = $result->fetch_object();
 				if (($result->num_rows) == 1){
 					$_SESSION['username']=$username;
-					header("location: admin.php");
+					$_SESSION['akses']=$level;
+					header("location: admin/index.php");
 				}else{
 					?>
 					<script language="JavaScript">
@@ -75,7 +78,8 @@ if (isset($_POST["submit"])){
 				$row = $result->fetch_object();
 				if (($result->num_rows) == 1){
 					$_SESSION['username']= $username;
-					header("location: eksekutif.php");
+					$_SESSION['akses']=$level;
+					header("location: eksekutif\index.php");
 				}else{
 					?>
 					<script language="JavaScript">
