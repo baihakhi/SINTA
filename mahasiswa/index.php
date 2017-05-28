@@ -23,52 +23,53 @@
      <title>Catatan Bimbingan</title>
    </head>
    <body>
+     <center>
+       <div>
+         <h1 align="center">Catatan Bimbingan</h1>
+         <button class="btn btn-default" onclick="window.location.href='../logout.php'">Logout</button>
+         <p id="kolom"><input id="myInput" type="text" onkeyup="cari()" size="30" placeholder="Cari data mahasiswa"/>
+         <button class="btn btn-default">Cari</button>
+         <button class="btn btn-default" onClick="window.location.href='input_log.php'">Tambah Mahasiswa</button>
+         <table id="myTable" class="table table-hover">
+         </div>
+       <div>
+         <table>
+           <tr>
+             <th>Perkembangan</th>
+             <th>Tanggal</th>
+             <th>Status</th>
+           </tr>
+           <?php
+  //            $query = getAllRow('log');
+                while ($log = $row->fetch_object()) {
+                  $progress = $log->tag;
+                  $tanggal  = $log->tanggal;
+                  $status   = $log->persetujuan;
+                  $id       = $log->id_log;
 
-     <div>
-       <h1 align="center">Catatan Bimbingan</h1>
-       <button class="btn btn-default" onclick="window.location.href='../logout.php'">Logout</button>
-       <p id="kolom"><input id="myInput" type="text" onkeyup="cari()" size="30" placeholder="Cari data mahasiswa"/>
-       <button class="btn btn-default">Cari</button>
-       <button class="btn btn-default" onClick="window.location.href='dosen_add.php'">Tambah Mahasiswa</button>
-       <table id="myTable" class="table table-hover">
+                  $da =  date_create("$tanggal");
+
+                  if ($status==1) {
+                    $status = "terverifikasi";
+                  }else {
+                    $status = "belum terverifikasi";
+                  }
+            ?>
+            <tr>
+              <td><a  href="info_log.php?id=<?= $id ?>" > <?= $progress ?> </a></td>
+              <td><?= date_format($da,"d F Y"); ?></td>
+              <td><?= $status ?></td>
+              <td><a href="edit_log.php?id=<?= $id ?>">ubah</a></td>
+              <td>
+                <div data-id="<?= $id ?>">
+                  <button onClick="$(this).HapusLog()">hapus</button>
+                </div>
+              </td>
+            </tr>
+            <?php } ?>
+         </table>
        </div>
-     <div>
-       <table align="center">
-         <tr>
-           <th>Perkembangan</th>
-           <th>Tanggal</th>
-           <th>Status</th>
-         </tr>
-         <?php
-//            $query = getAllRow('log');
-              while ($log = $row->fetch_object()) {
-                $progress = $log->tag;
-                $tanggal  = $log->tanggal;
-                $status   = $log->persetujuan;
-                $id       = $log->id_log;
-
-                $da =  date_create("$tanggal");
-
-                if ($status==1) {
-                  $status = "terverifikasi";
-                }else {
-                  $status = "belum terverifikasi";
-                }
-          ?>
-          <tr>
-            <td><a  href=info_log.php?id=<?= $id ?> > <?= $progress ?> </a></td>
-            <td><?= date_format($da,"d F Y"); ?></td>
-            <td><?= $status ?></td>
-            <td><a href="edit_log.php?id=<?= $id ?>">ubah</a></td>
-            <td>
-              <div data-id="<?= $id ?>">
-                <button onClick="$(this).HapusLog()">hapus</button>
-              </div>
-            </td>
-          </tr>
-          <?php } ?>
-       </table>
-     </div>
+     </center>
    </body>
    <script src="../js/script.js"></script>
 

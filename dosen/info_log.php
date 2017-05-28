@@ -1,10 +1,17 @@
 <?php
-include_once('includes/fn.php');
+include_once('../includes/fn.php');
+
+if (!isset($_SESSION['username'])){
+    header("location:../logout.php");
+//  echo "session unset";
+  } elseif ($_SESSION['akses']!="Dosen") {
+    header("location:../logout.php");
+  }
 
   //algoritma
-  if (isset($_GET['q'])){
-    $q = readInput($_GET['q']);
-    $query = getSpesificRow('log', 'tanggal', $q);
+  if (isset($_GET['id'])){
+    $id = readInput($_GET['id']);
+    $query = getSpesificRow('log', 'id_log', $id);
     while ($log = $query->fetch_object()) {
       $nim = $log->nim;
       $progress = $log->tag;
@@ -18,7 +25,7 @@ include_once('includes/fn.php');
   }
 
   if(isset($_POST['verif'])){
-    if(verifikasi($nim, $tanggal)){
+    if(verifikasi($id)){
     echo "status catatan mahasiswa ".$nim." diperbarui";
   }
   }

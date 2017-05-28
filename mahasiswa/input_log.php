@@ -1,5 +1,5 @@
 <?php
-include_once('includes/fn.php');
+include_once('../includes/fn.php');
 
 $today = getdate();
 $hari = $today['weekday'];

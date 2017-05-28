@@ -1,8 +1,12 @@
 <?php
-if (isset($_SESSION['email'])){
-}
 include('../includes/fn.php');
 
+if (!isset($_SESSION['username'])){
+    header("location:../logout.php");
+//  echo "session unset";
+  } elseif ($_SESSION['akses']!="Dosen") {
+    header("location:../logout.php");
+  }
 ?>
 <html>
 		<head>

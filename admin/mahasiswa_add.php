@@ -2,12 +2,12 @@
 include_once('../includes/fn.php');
 
 if (!isset($_SESSION['akses'])){
-  header("location:../logout.php");
-//  echo "session unset";
+//  header("location:../logout.php");
+  echo "session unset";
 }elseif (($_SESSION['akses']) != "Administrator"){
-  header("location:../logout.php");
-//  echo "bukan admin";
-//  echo $_SESSION['username'];
+//  header("location:../logout.php");
+  echo "bukan admin";
+  echo $_SESSION['username'];
 }
 
 //algoritma
@@ -15,20 +15,19 @@ if (isset($_POST["simpan"])) {
 
   //kamus
   $arr = array();
-  $nip = readInput($_POST['nip']);
-
+//  $nim = ;
 
   //algo
-  array_push($arr,!empty($_POST['nip']) ? readInput($_POST['nip']) : '');
+  array_push($arr,!empty($_POST['nim']) ? readInput($_POST['nim']) : '');
   array_push($arr,!empty($_POST['nama']) ? readInput($_POST['nama']) : '');
   array_push($arr,!empty($_POST['pass']) ? readInput($_POST['pass']) : '');
 
   //  print_r($arr);
-  if(tambahDosen($arr,$nip) == true){
+  if(tambahMhs($arr)){
   //    echo "updated";
-    header("location:dosen_tampil.php");
-  //    print_r($arr);
+    header("location:mahasiswa_tampil.php");
   }else {
+    print_r($arr);
     echo "failed";
   }
 }
@@ -42,19 +41,19 @@ if (isset($_POST["simpan"])) {
      </title>
    </head>
    <body>
-     <h1>Tambah Data Dosen</h1>
+     <h1>Tambah Data Mhs</h1>
      <form class="" method="post">
 
-       <table title="Data Dosen">
+       <table title="Data Mhs">
          <tr>
-           <td>NIP</td>
+           <td>NIM</td>
            <td>:      </td>
-           <td><input type="text" name="nip" title="masukkan nip dosen" placeholder="123456987000556"></td>
+           <td><input type="text" name="nim" title="masukkan nim mahasiswa" placeholder="240456000556"></td>
          </tr>
          <tr>
            <td>Nama</td>
            <td>:      </td>
-           <td><input type="text" name="nama" title="masukkan nama dosen" placeholder="Nama Dosen, S. Kom"></td>
+           <td><input type="text" name="nama" title="masukkan nama mahasiswa" placeholder="Michele Jernao"></td>
          </tr>
          <tr>
            <td>Password</td>

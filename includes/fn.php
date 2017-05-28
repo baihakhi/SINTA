@@ -87,4 +87,43 @@ function updateEksekutif ($array,$id){
   $query = $con->query("UPDATE eksekutif SET nip='".$array[0]."', nama='".$array[1]."', username='".$array[2]."', password='".$array[3]."' WHERE nip='".$id."' ");
   return isset($query) ? checkQuery($query) : false;
 }
+
+//---------------------TUGAS AKHIR
+
+function tambahTA ($array){
+  global $con;
+
+  $query = $con->query("INSERT INTO tugas_akhir (judul, nim, nip) VALUES ('$array[0]','$array[1]','$array[2]')");
+  return isset($query) ? checkQuery($query) : false;
+}
+
+function updateTA ($array,$id){
+  global $con;
+
+  $query = $con->query("UPDATE tugas_akhir SET judul='".$array[0]."', nim='".$array[1]."', nip='".$array[2]."' WHERE id_ta='".$id."' ");
+  return isset($query) ? checkQuery($query) : false;
+}
+
+//---------------------MAHASISWA
+
+function tambahMhs ($array){
+  global $con;
+
+  $query = $con->query("INSERT INTO mahasiswa (nim, nama, password) VALUES ('$array[0]','$array[1]','$array[2]') ");
+  return isset($query) ? checkQuery($query) : false;
+}
+
+function hapusMhs($id){
+  global $con;
+
+  $query = $con->query("DELETE FROM mahasiswa WHERE nip='$id'");
+  return isset($query) ? checkQuery($query) : false;
+}
+
+function updateMhs ($array,$id){
+  global $con;
+
+  $query = $con->query("UPDATE mahasiswa SET nip='".$array[0]."', nama='".$array[1]."', password='".$array[2]."' WHERE nip='".$id."' ");
+  return isset($query) ? checkQuery($query) : false;
+}
 ?>

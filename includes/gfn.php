@@ -16,6 +16,17 @@ function checkQuery($query){
   return true;
 }
 
+function checkQueryExist($query){
+  if ($query) {
+    if ($query->num_rows > 0){
+      return true;
+    }else {
+      return false;
+    }
+    return false;
+  }
+}
+
 function runQuery($query){
   if (checkQuery($query)){
     return $query;

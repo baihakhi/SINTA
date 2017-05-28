@@ -21,7 +21,12 @@ $akses = $_SESSION['akses'];
       <a href="eksekutif_tampil.php">ini eksekutif</a>
     </div>
     <div>
-
+      <a href="mahasiswa_tampil.php">ini mahasiswa</a>
     </div>
+<!--
+    <div>
+      <a href="eksekutif_tampil.php">ini eksekutif</a>
+    </div>
+-->
   </body>
 </html>

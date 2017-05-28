@@ -6,17 +6,17 @@ if (!isset($_SESSION['username'])){
 //  echo "session unset";
   } elseif ($_SESSION['akses']!="Administrator") {
     header("location:../logout.php");
-  } elseif (!isset($_GET['nip'])) {
-      header("location:dosen_tampil.php");
+  } elseif (!isset($_GET['nim'])) {
+      header("location:mahasiswa_tampil.php");
   } else {
-      $id = $_GET['nip'];
-      $row = getSpesificRow('dosen','nip', $id);
+      $id = $_GET['nim'];
+      $row = getSpesificRow('mahasiswa','nim', $id);
   }
 //algoritma
-  while ($dosen = $row->fetch_object()) {
-    $nip  = $dosen->nip;
-    $nama = $dosen->nama;
-    $pass = $dosen->password;
+  while ($mhs = $row->fetch_object()) {
+    $nim  = $mhs->nim;
+    $nama = $mhs->nama;
+    $pass = $mhs->password;
   }
 
 if (isset($_POST["ubah"])) {
@@ -25,14 +25,14 @@ if (isset($_POST["ubah"])) {
   $arr = array();
 
   //algo
-  array_push($arr,!empty($_POST['nip']) ? readInput($_POST['nip']) : '');
+  array_push($arr,!empty($_POST['nim']) ? readInput($_POST['nim']) : '');
   array_push($arr,!empty($_POST['nama']) ? readInput($_POST['nama']) : '');
   array_push($arr,!empty($_POST['pass']) ? readInput($_POST['pass']) : '');
 
 //  print_r($arr);
-  if(updateDosen($arr,$nip) == true){
+  if(updateDosen($arr,$nim) == true){
 //    echo "updated";
-    header("location:dosen_tampil.php");
+    header("location:mahasiswa_tampil.php");
 //    print_r($arr);
   }else {
     echo "failed";
@@ -44,18 +44,18 @@ if (isset($_POST["ubah"])) {
  <html>
    <head>
      <meta charset="utf-8">
-     <title>Edit Dosen
+     <title>Edit Mahasiswa
      </title>
    </head>
    <body>
-     <h1>Catatan Bimbingan</h1>
+     <h1>Mhs</h1>
      <form method="post">
 
        <table title="Edit Data Dosen">
          <tr>
-           <td>nip</td>
+           <td>nim</td>
            <td>:      </td>
-           <td><input type="text" name="nip" value="<?= $nip ?>"></td>
+           <td><input type="text" name="nim" value="<?= $nim ?>"></td>
          </tr>
          <tr>
            <td>nama</td>

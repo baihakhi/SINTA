@@ -70,5 +70,26 @@ $(document).ready(function() {
        });
      }
    }
-
+   $.fn.HapusMhs = function() {
+     if (confirm("yakin ni mo dihapus?") == true) {
+       var elemen = this.parent().parent().parent();
+       var id = this.parent().attr('data-id');
+       $.ajax({
+         type: "POST",
+         url: "mahasiswa_delete.php",
+         dataType: 'html',
+         data: "&id="+id,
+         success: function(msg){
+           if(msg == true){
+             elemen.remove();
+             alert("success"+id);
+           }
+           else {
+             elemen.remove();
+             alert("salaaah"+id);
+           }
+         },
+       });
+     }
+   }
  });
